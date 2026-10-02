@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Professional CV Builder</title>
+<style>
+*{box-sizing:border-box}
+:root{--primary:#0f4c5c;--accent:#167c8c;--light:#eef6f7;--text:#1d2939;--muted:#667085;--border:#d9e2e5}
+body{margin:0;font-family:Inter,Arial,sans-serif;background:#eef2f5;color:var(--text)}
+button,input,textarea,select{font:inherit}
+.app{display:grid;grid-template-columns:430px 1fr;min-height:100vh}
+.panel{background:#fff;border-right:1px solid #dfe5e8;height:100vh;overflow:auto;position:sticky;top:0}
+.brand{padding:20px 22px;background:linear-gradient(135deg,#0b3d4a,#168394);color:#fff}
+.brand h1{margin:0;font-size:21px}.brand p{margin:5px 0 0;font-size:12px;opacity:.85}
+.form{padding:18px}
+.section{border:1px solid var(--border);border-radius:12px;margin-bottom:14px;overflow:hidden}
+.section h2{font-size:14px;margin:0;padding:13px 14px;background:var(--light);color:var(--primary);border-bottom:1px solid var(--border)}
+.inside{padding:13px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.full{grid-column:1/-1}
+label{display:block;font-size:11px;font-weight:700;color:#475467;margin-bottom:5px;text-transform:uppercase;letter-spacing:.3px}
+input,textarea,select{width:100%;border:1px solid #ccd7db;border-radius:7px;padding:9px 10px;outline:0;background:#fff}
+input:focus,textarea:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 3px #167c8c18}
+textarea{min-height:85px;resize:vertical}
+.item{border:1px solid #e1e7ea;padding:11px;border-radius:9px;margin-bottom:10px;background:#fbfcfc}
+.item-title{font-weight:700;font-size:12px;color:var(--primary);margin-bottom:9px}
+.actions{display:flex;gap:8px;flex-wrap:wrap}
+.btn{border:0;border-radius:7px;padding:9px 13px;cursor:pointer;font-weight:700;font-size:12px}
+.primary{background:var(--primary);color:white}.accent{background:var(--accent);color:white}
+.light{background:#edf4f5;color:var(--primary)}.danger{background:#fff0f0;color:#b42318}
+.toolbar{position:fixed;left:0;bottom:0;width:430px;padding:12px 18px;background:#fff;border-top:1px solid #dfe5e8;z-index:10;display:flex;gap:8px}
+.preview-area{padding:28px;display:flex;justify-content:center;overflow:auto}
+.paper{width:210mm;min-height:297mm;background:#fff;box-shadow:0 5px 30px #00000018;padding:15mm 16mm 13mm}
+.cv-head{display:flex;gap:18px;border-bottom:3px solid var(--primary);padding-bottom:13px}
+.photo{width:31mm;height:38mm;border-radius:6px;object-fit:cover;object-position:center;border:1px solid #cbd5d8;display:none;flex:0 0 31mm;background:#f5f7f8}
+.head-main{flex:1}.name{font-size:29px;font-weight:800;letter-spacing:.5px;color:#123b45;text-transform:uppercase}
+.title{font-size:13px;color:var(--accent);font-weight:700;margin:5px 0 10px;text-transform:uppercase}
+.contact{font-size:9.5px;line-height:1.7;color:#475467}
+.contact span{display:inline-block;margin-right:12px}
+.cv-section{margin-top:14px}.cv-section h3{font-size:12px;color:var(--primary);letter-spacing:1px;border-bottom:1px solid #cbd9dc;padding-bottom:5px;margin:0 0 8px;text-transform:uppercase}
+.cv-section p{font-size:10.2px;line-height:1.6;margin:0;color:#344054}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.cv-item{margin-bottom:9px}.cv-item .top{display:flex;justify-content:space-between;gap:10px}
+.cv-item strong{font-size:10.5px;color:#1d2939}.date{font-size:9px;color:#667085;white-space:nowrap}
+.cv-item .sub{font-size:9.3px;color:#667085;margin:2px 0}
+.cv-item ul{margin:4px 0 0;padding-left:15px}.cv-item li{font-size:9.5px;line-height:1.5}
+.skills{display:flex;flex-wrap:wrap;gap:5px}.skill{font-size:9px;background:#edf5f6;border:1px solid #d4e6e9;padding:4px 7px;border-radius:4px}
+.personal{display:grid;grid-template-columns:1fr 1fr;gap:4px 20px}.personal div{font-size:9.5px}.personal b{color:#475467}
+.declaration{font-size:9.5px;line-height:1.55}.sign{display:flex;justify-content:space-between;margin-top:25px;font-size:9.5px}.sig{width:150px;text-align:center;border-top:1px solid #667085;padding-top:5px}
+.muted{color:#98a2b3;font-size:9px}
+@media(max-width:1000px){.app{grid-template-columns:1fr}.panel{position:relative;height:auto}.toolbar{position:sticky;width:100%;bottom:0}.preview-area{padding:15px}.paper{transform-origin:top center}}
+@media print{
+ @page{size:A4;margin:0}
+ body{background:#fff}
+ .panel{display:none!important}.preview-area{padding:0;display:block}
+ .paper{width:210mm;min-height:297mm;box-shadow:none;margin:0;padding:15mm 16mm 13mm}
+}
+</style>
+</head>
+<body>
+<div class="app">
+<aside class="panel">
+<div class="brand"><h1>JANA ONLINE SERVICE</h1><h4>Professional CV Builder</h4><p>Fill the form • Preview instantly • Print / Save as PDF</p></div>
+<div class="form">
+
+<div class="section"><h2>01 · Personal & Contact</h2><div class="inside"><div class="grid">
+<div><label>Full Name</label><input id="name" value="Suman Jana"></div>
+<div><label>Professional Title</label><input id="title" value="Computer Expert"></div>
+<div><label>Mobile 1</label><input id="phone1" value="+91 9907992247"></div>
+<div><label>Mobile 2</label><input id="phone2" value="+91 6297726894"></div>
+<div><label>Email</label><input id="email" value="sj637989@gmail.com"></div>
+<div><label>PIN Code</label><input id="pin" value="743347"></div>
+<div class="full"><label>Address</label><textarea id="address">Kakdwip, Dakshin Sener Chak, Kalinagar, South 24 Parganas, West Bengal - 743347</textarea></div>
+<div>
+<label>Profile Photo</label>
+<input id="photo" type="file" accept="image/*">
+<div id="photoPreviewBox" style="display:none;margin-top:8px;padding:8px;border:1px solid #d9e2e5;border-radius:8px;background:#f7fafb;text-align:center">
+<img id="formPhotoPreview" style="width:72px;height:88px;object-fit:cover;object-position:center;border-radius:5px;border:1px solid #ccd7da">
+<div style="font-size:10px;color:#667085;margin-top:5px">Photo Preview</div>
+</div>
+</div>
+<div><label>Father's Name</label><input id="father" value="Narayan Jana"></div>
+<div><label>Date of Birth</label><input id="dob" type="date" value="2003-07-26"></div>
+<div><label>Gender</label><select id="gender"><option>Male</option><option>Female</option><option>Other</option></select></div>
+<div><label>Nationality</label><input id="nationality" value="Indian"></div>
+<div><label>Religion</label><input id="religion" value="Hindu"></div>
+<div><label>Category</label><input id="category" value="General"></div>
+<div><label>Marital Status</label><input id="marital" value="Unmarried"></div>
+<div><label>Blood Group</label><input id="blood" value="AB+"></div>
+<div><label>Height</label><input id="height" value="5'5&quot;"></div>
+<div><label>Weight</label><input id="weight" value="58 Kgs"></div>
+</div></div></div>
+
+<div class="section"><h2>02 · Career Objective / Summary</h2><div class="inside"><textarea id="objective">I am looking for a company where I can use my experience and education to contribute to the company's goals while developing my professional skills and career.</textarea></div></div>
+
+<div class="section"><h2>03 · Education</h2><div class="inside"><div id="educationList"></div><button class="btn light" onclick="addEducation()">+ Add Education</button></div></div>
+
+<div class="section"><h2>04 · Work Experience</h2><div class="inside"><div id="experienceList"></div><button class="btn light" onclick="addExperience()">+ Add Experience</button></div></div>
+
+<div class="section"><h2>05 · Technical / Computer Skills</h2><div class="inside"><textarea id="technical">Microsoft Office, Internet Browsing, Mail Communication, File Management, Inventory Management, Basic Troubleshooting, Hardware Skills, Programming Languages, Graphic Design, Social Media, Presentation Software</textarea></div></div>
+
+<div class="section"><h2>06 · Personal Skills</h2><div class="inside"><textarea id="skills">Communication Skills, Teamwork, Time Management, Problem Solving, Office Operations, Quick Learning</textarea></div></div>
+
+<div class="section"><h2>07 · Languages Known</h2><div class="inside"><textarea id="languages">Bengali, English, Hindi</textarea></div></div>
+
+<div class="section"><h2>08 · Certifications</h2><div class="inside"><div id="certList"></div><button class="btn light" onclick="addCert()">+ Add Certificate</button></div></div>
+
+<div class="section"><h2>09 · Projects / Achievements</h2><div class="inside"><textarea id="projects" placeholder="Project name, achievement or important professional work..."></textarea></div></div>
+
+<div class="section"><h2>10 · Declaration</h2><div class="inside"><textarea id="declaration">I hereby declare that the information presented in this resume is true and accurate to the best of my knowledge. I assure you that my experience, skills and qualifications meet the job requirements and I am committed to making a positive contribution to your organization.</textarea>
+<div class="grid" style="margin-top:10px"><div><label>Place</label><input id="place" value="Kakdwip"></div><div><label>Date</label><input id="date" type="date"></div></div></div></div>
+
+<div class="actions"><button class="btn danger" onclick="resetAll()">Reset Form</button><button class="btn light" onclick="saveData()">Save in Browser</button><button class="btn light" onclick="loadData()">Load Saved Data</button></div>
+</div>
+<div class="toolbar"><button class="btn primary" onclick="window.print()">🖨 Print / Save PDF</button></div>
+</aside>
+
+<main class="preview-area"><div class="paper" id="paper">
+<header class="cv-head">
+<img id="pPhoto" class="photo">
+<div class="head-main">
+<div class="name" id="pName"></div><div class="title" id="pTitle"></div>
+<div class="contact"><span id="pPhone"></span><span id="pEmail"></span><span id="pPin"></span><br><span id="pAddress"></span></div>
+</div></header>
+
+<section class="cv-section"><h3>Professional Summary</h3><p id="pObjective"></p></section>
+<section class="cv-section"><h3>Work Experience</h3><div id="pExperience"></div></section>
+<section class="cv-section"><h3>Education</h3><div id="pEducation"></div></section>
+<div class="two">
+<div>
+<section class="cv-section"><h3>Technical Skills</h3><div class="skills" id="pTechnical"></div></section>
+<section class="cv-section"><h3>Personal Skills</h3><div class="skills" id="pSkills"></div></section>
+<section class="cv-section"><h3>Languages Known</h3><div class="skills" id="pLanguages"></div></section>
+</div>
+<div>
+<section class="cv-section"><h3>Certifications</h3><div id="pCert"></div></section>
+<section class="cv-section"><h3>Projects / Achievements</h3><p id="pProjects"></p></section>
+</div>
+</div>
+<section class="cv-section"><h3>Personal Information</h3><div class="personal" id="pPersonal"></div></section>
+<section class="cv-section"><h3>Declaration</h3><div class="declaration" id="pDeclaration"></div><div class="sign"><div>Place: <span id="pPlace"></span><br>Date: <span id="pDate"></span></div><div class="sig">Signature of Candidate<br><strong id="pSign"></strong></div></div></section>
+</div></main>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+let photoData="";
+
+function val(id){return $(id)?.value.trim()||""}
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+function chips(text){return text.split(/[,\\n]+/).map(x=>x.trim()).filter(Boolean).map(x=>`<span class="skill">${esc(x)}</span>`).join("")}
+function addEducation(data={}){
+ const d=document.createElement("div");d.className="item education";
+ d.innerHTML=`<div class="item-title">Education Entry</div><div class="grid">
+ <div><label>Qualification</label><input class="eq" value="${esc(data.q||"")}"></div>
+ <div><label>Institution</label><input class="ei" value="${esc(data.i||"")}"></div>
+ <div><label>Board / University</label><input class="eb" value="${esc(data.b||"")}"></div>
+ <div><label>Year</label><input class="ey" value="${esc(data.y||"")}"></div>
+ <div><label>Marks / Grade</label><input class="em" value="${esc(data.m||"")}"></div>
+ <div><label>Location</label><input class="el" value="${esc(data.l||"")}"></div>
+ </div><button class="btn danger" style="margin-top:8px" onclick="this.parentElement.remove();render()">Remove</button>`;
+ $("educationList").appendChild(d);d.querySelectorAll("input").forEach(x=>x.addEventListener("input",render));render();
+}
+function addExperience(data={}){
+ const d=document.createElement("div");d.className="item experience";
+ d.innerHTML=`<div class="item-title">Experience Entry</div><div class="grid">
+ <div><label>Job Title</label><input class="xt" value="${esc(data.t||"")}"></div>
+ <div><label>Company / Organisation</label><input class="xc" value="${esc(data.c||"")}"></div>
+ <div><label>Location</label><input class="xl" value="${esc(data.l||"")}"></div>
+ <div><label>Start - End</label><input class="xd" value="${esc(data.d||"")}"></div>
+ <div class="full"><label>Responsibilities / Description</label><textarea class="xr">${esc(data.r||"")}</textarea></div>
+ </div><button class="btn danger" style="margin-top:8px" onclick="this.parentElement.remove();render()">Remove</button>`;
+ $("experienceList").appendChild(d);d.querySelectorAll("input,textarea").forEach(x=>x.addEventListener("input",render));render();
+}
+function addCert(data={}){
+ const d=document.createElement("div");d.className="item cert";
+ d.innerHTML=`<div class="grid"><div><label>Certificate</label><input class="cn" value="${esc(data.n||"")}"></div><div><label>Organisation / Year</label><input class="cy" value="${esc(data.y||"")}"></div></div><button class="btn danger" style="margin-top:8px" onclick="this.parentElement.remove();render()">Remove</button>`;
+ $("certList").appendChild(d);d.querySelectorAll("input").forEach(x=>x.addEventListener("input",render));render();
+}
+function render(){
+ $("pName").textContent=val("name");$("pTitle").textContent=val("title");
+ $("pPhone").textContent=[val("phone1"),val("phone2")].filter(Boolean).join("  |  ");
+ $("pEmail").textContent=val("email");$("pPin").textContent=val("pin")? "PIN: "+val("pin"):"";$("pAddress").textContent=val("address");
+ $("pObjective").textContent=val("objective");
+ $("pTechnical").innerHTML=chips(val("technical"));$("pSkills").innerHTML=chips(val("skills"));$("pLanguages").innerHTML=chips(val("languages"));
+ $("pProjects").textContent=val("projects");$("pDeclaration").textContent=val("declaration");$("pPlace").textContent=val("place");$("pDate").textContent=val("date");$("pSign").textContent=val("name");
+
+ $("pEducation").innerHTML=[...document.querySelectorAll(".education")].map(e=>`<div class="cv-item"><div class="top"><strong>${esc(e.querySelector(".eq").value)}</strong><span class="date">${esc(e.querySelector(".ey").value)}</span></div><div class="sub">${esc(e.querySelector(".ei").value)} ${e.querySelector(".eb").value?" · "+esc(e.querySelector(".eb").value):""} ${e.querySelector(".el").value?" · "+esc(e.querySelector(".el").value):""}</div>${e.querySelector(".em").value?`<div class="sub">Marks / Grade: ${esc(e.querySelector(".em").value)}</div>`:""}</div>`).join("");
+ $("pExperience").innerHTML=[...document.querySelectorAll(".experience")].map(e=>`<div class="cv-item"><div class="top"><strong>${esc(e.querySelector(".xt").value)}</strong><span class="date">${esc(e.querySelector(".xd").value)}</span></div><div class="sub">${esc(e.querySelector(".xc").value)} ${e.querySelector(".xl").value?" · "+esc(e.querySelector(".xl").value):""}</div>${e.querySelector(".xr").value?`<ul>${e.querySelector(".xr").value.split(/\\n+/).map(x=>`<li>${esc(x.replace(/^[-•]\\s*/,""))}</li>`).join("")}</ul>`:""}</div>`).join("");
+ $("pCert").innerHTML=[...document.querySelectorAll(".cert")].map(e=>`<div class="cv-item"><strong>${esc(e.querySelector(".cn").value)}</strong><div class="sub">${esc(e.querySelector(".cy").value)}</div></div>`).join("");
+
+ const personal=[
+ ["Father's Name",val("father")],["Date of Birth",val("dob")],["Gender",val("gender")],["Nationality",val("nationality")],
+ ["Religion",val("religion")],["Category",val("category")],["Marital Status",val("marital")],["Blood Group",val("blood")],
+ ["Height",val("height")],["Weight",val("weight")],["Last Qualification",lastQualification()]
+ ].filter(x=>x[1]);
+ $("pPersonal").innerHTML=personal.map(x=>`<div><b>${x[0]}:</b> ${esc(x[1])}</div>`).join("");
+}
+function lastQualification(){let a=[...document.querySelectorAll(".education")];return a.length?a[0].querySelector(".eq").value:""}
+$("photo").addEventListener("change",e=>{
+ const f=e.target.files[0];
+ if(!f)return;
+ if(!f.type.startsWith("image/")){alert("Please select an image file.");return}
+ const r=new FileReader();
+ r.onload=()=>{
+   photoData=r.result;
+   $("pPhoto").src=r.result;
+   $("pPhoto").style.display="block";
+   $("formPhotoPreview").src=r.result;
+   $("photoPreviewBox").style.display="block";
+ };
+ r.readAsDataURL(f);
+});
+document.querySelectorAll("input:not(#photo),textarea,select").forEach(x=>x.addEventListener("input",render));
+function saveData(){
+ const data={fields:{}};document.querySelectorAll("input,textarea,select").forEach(x=>{if(x.id)data.fields[x.id]=x.value});
+ data.edu=[...document.querySelectorAll(".education")].map(e=>({q:e.querySelector(".eq").value,i:e.querySelector(".ei").value,b:e.querySelector(".eb").value,y:e.querySelector(".ey").value,m:e.querySelector(".em").value,l:e.querySelector(".el").value}));
+ data.exp=[...document.querySelectorAll(".experience")].map(e=>({t:e.querySelector(".xt").value,c:e.querySelector(".xc").value,l:e.querySelector(".xl").value,d:e.querySelector(".xd").value,r:e.querySelector(".xr").value}));
+ data.cert=[...document.querySelectorAll(".cert")].map(e=>({n:e.querySelector(".cn").value,y:e.querySelector(".cy").value}));
+ data.photo=photoData;localStorage.setItem("professionalCV",JSON.stringify(data));alert("CV data saved in this browser.");
+}
+function loadData(){
+ const d=JSON.parse(localStorage.getItem("professionalCV")||"null");if(!d)return alert("No saved CV found.");
+ Object.entries(d.fields||{}).forEach(([k,v])=>{if($(k))$(k).value=v});
+ $("educationList").innerHTML="";$("experienceList").innerHTML="";$("certList").innerHTML="";
+ (d.edu||[]).forEach(addEducation);(d.exp||[]).forEach(addExperience);(d.cert||[]).forEach(addCert);
+ if(d.photo){
+ photoData=d.photo;
+ $("pPhoto").src=d.photo;
+ $("pPhoto").style.display="block";
+ $("formPhotoPreview").src=d.photo;
+ $("photoPreviewBox").style.display="block";
+}
+render();
+}
+function resetAll(){if(confirm("Clear the complete CV form?")){localStorage.removeItem("professionalCV");location.reload()}}
+function downloadHTML(){
+ const blob=new Blob([document.documentElement.outerHTML],{type:"text/html"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="professional-cv-builder.html";a.click();URL.revokeObjectURL(a.href)
+}
+$("date").value=new Date().toISOString().slice(0,10);
+addEducation({q:"Higher Secondary Education (12th)",i:"Kalinagar Dwarikanath Institution High School",b:"WBCHSE",y:"2022",m:"336",l:"South 24 Parganas"});
+addEducation({q:"Secondary Education (10th)",i:"Kalinagar Dwarikanath Institution High School",b:"WBBSE",y:"2020",m:"227",l:"South 24 Parganas"});
+addExperience({t:"Computer Trainer",c:"Maamtaj Information Technology",l:"Kakdwip, South 24 Parganas",d:"2023 – 2025",r:"Taught computer applications and practical computer skills\\nHandled office operations and training activities\\nProvided support for day-to-day computer work"});
+addExperience({t:"Stock Management / Counter",c:"Joy Makali Lottery Counter",l:"South 24 Parganas, West Bengal",d:"2022 – 2023",r:"Handled stock management work\\nUsed RT LOT software for stock management\\nManaged inventory-related activities"});
+addCert({n:"Add your certification",y:"Organisation / Year"});
+render();
+</script>
+</body>
+</html>
