@@ -2,249 +2,148 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Professional CV Builder</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JOS Professional CV Maker</title>
 <style>
-*{box-sizing:border-box}
-:root{--primary:#0f4c5c;--accent:#167c8c;--light:#eef6f7;--text:#1d2939;--muted:#667085;--border:#d9e2e5}
-body{margin:0;font-family:Inter,Arial,sans-serif;background:#eef2f5;color:var(--text)}
-button,input,textarea,select{font:inherit}
-.app{display:grid;grid-template-columns:430px 1fr;min-height:100vh}
-.panel{background:#fff;border-right:1px solid #dfe5e8;height:100vh;overflow:auto;position:sticky;top:0}
-.brand{padding:20px 22px;background:linear-gradient(135deg,#0b3d4a,#168394);color:#fff}
-.brand h1{margin:0;font-size:21px}.brand p{margin:5px 0 0;font-size:12px;opacity:.85}
-.form{padding:18px}
-.section{border:1px solid var(--border);border-radius:12px;margin-bottom:14px;overflow:hidden}
-.section h2{font-size:14px;margin:0;padding:13px 14px;background:var(--light);color:var(--primary);border-bottom:1px solid var(--border)}
-.inside{padding:13px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.full{grid-column:1/-1}
-label{display:block;font-size:11px;font-weight:700;color:#475467;margin-bottom:5px;text-transform:uppercase;letter-spacing:.3px}
-input,textarea,select{width:100%;border:1px solid #ccd7db;border-radius:7px;padding:9px 10px;outline:0;background:#fff}
-input:focus,textarea:focus,select:focus{border-color:var(--accent);box-shadow:0 0 0 3px #167c8c18}
-textarea{min-height:85px;resize:vertical}
-.item{border:1px solid #e1e7ea;padding:11px;border-radius:9px;margin-bottom:10px;background:#fbfcfc}
-.item-title{font-weight:700;font-size:12px;color:var(--primary);margin-bottom:9px}
-.actions{display:flex;gap:8px;flex-wrap:wrap}
-.btn{border:0;border-radius:7px;padding:9px 13px;cursor:pointer;font-weight:700;font-size:12px}
-.primary{background:var(--primary);color:white}.accent{background:var(--accent);color:white}
-.light{background:#edf4f5;color:var(--primary)}.danger{background:#fff0f0;color:#b42318}
-.toolbar{position:fixed;left:0;bottom:0;width:430px;padding:12px 18px;background:#fff;border-top:1px solid #dfe5e8;z-index:10;display:flex;gap:8px}
-.preview-area{padding:28px;display:flex;justify-content:center;overflow:auto}
-.paper{width:210mm;min-height:297mm;background:#fff;box-shadow:0 5px 30px #00000018;padding:15mm 16mm 13mm}
-.cv-head{display:flex;gap:18px;border-bottom:3px solid var(--primary);padding-bottom:13px}
-.photo{width:31mm;height:38mm;border-radius:6px;object-fit:cover;object-position:center;border:1px solid #cbd5d8;display:none;flex:0 0 31mm;background:#f5f7f8}
-.head-main{flex:1}.name{font-size:29px;font-weight:800;letter-spacing:.5px;color:#123b45;text-transform:uppercase}
-.title{font-size:13px;color:var(--accent);font-weight:700;margin:5px 0 10px;text-transform:uppercase}
-.contact{font-size:9.5px;line-height:1.7;color:#475467}
-.contact span{display:inline-block;margin-right:12px}
-.cv-section{margin-top:14px}.cv-section h3{font-size:12px;color:var(--primary);letter-spacing:1px;border-bottom:1px solid #cbd9dc;padding-bottom:5px;margin:0 0 8px;text-transform:uppercase}
-.cv-section p{font-size:10.2px;line-height:1.6;margin:0;color:#344054}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.cv-item{margin-bottom:9px}.cv-item .top{display:flex;justify-content:space-between;gap:10px}
-.cv-item strong{font-size:10.5px;color:#1d2939}.date{font-size:9px;color:#667085;white-space:nowrap}
-.cv-item .sub{font-size:9.3px;color:#667085;margin:2px 0}
-.cv-item ul{margin:4px 0 0;padding-left:15px}.cv-item li{font-size:9.5px;line-height:1.5}
-.skills{display:flex;flex-wrap:wrap;gap:5px}.skill{font-size:9px;background:#edf5f6;border:1px solid #d4e6e9;padding:4px 7px;border-radius:4px}
-.personal{display:grid;grid-template-columns:1fr 1fr;gap:4px 20px}.personal div{font-size:9.5px}.personal b{color:#475467}
-.declaration{font-size:9.5px;line-height:1.55}.sign{display:flex;justify-content:space-between;margin-top:25px;font-size:9.5px}.sig{width:150px;text-align:center;border-top:1px solid #667085;padding-top:5px}
-.muted{color:#98a2b3;font-size:9px}
-@media(max-width:1000px){.app{grid-template-columns:1fr}.panel{position:relative;height:auto}.toolbar{position:sticky;width:100%;bottom:0}.preview-area{padding:15px}.paper{transform-origin:top center}}
-@media print{
- @page{size:A4;margin:0}
- body{background:#fff}
- .panel{display:none!important}.preview-area{padding:0;display:block}
- .paper{width:210mm;min-height:297mm;box-shadow:none;margin:0;padding:15mm 16mm 13mm}
-}
+:root{--navy:#073b5a;--deep:#052b43;--teal:#008f95;--aqua:#20c6c4;--ink:#15354d;--muted:#627b8e;--line:#d7e8ef;--pale:#eef8fb;--white:#fff}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,"Segoe UI",Arial,sans-serif;color:var(--ink);background:#eaf4f8;min-height:100vh}
+body:before{content:"";position:fixed;inset:0;z-index:-2;background:radial-gradient(circle at 8% 12%,#a8e8e4 0,transparent 26%),radial-gradient(circle at 95% 80%,#b5d9f2 0,transparent 30%),linear-gradient(135deg,#f6fbfd,#dcecf4 48%,#eef8f7)}
+body:after{content:"";position:fixed;z-index:-1;width:520px;height:520px;border:1px solid #ffffff80;border-radius:50%;right:-170px;top:60px;box-shadow:0 0 0 38px #ffffff20,0 0 0 80px #ffffff15;pointer-events:none}body{background-image:radial-gradient(circle at 12% 25%,#11a9a515 0 2px,transparent 3px),radial-gradient(circle at 88% 36%,#087d8b18 0 2px,transparent 3px);background-size:34px 34px,46px 46px}.hero{position:relative}.hero:before{content:"";position:absolute;z-index:-1;left:10px;right:10px;top:-14px;bottom:-14px;border-radius:24px;background:linear-gradient(105deg,#ffffff8c,#d8f5f14a);border:1px solid #ffffff9c}
+.topbar{background:linear-gradient(110deg,#052c45,#075b76 58%,#008f95);color:white;padding:20px clamp(16px,4vw,52px);display:flex;align-items:center;justify-content:space-between;gap:18px;box-shadow:0 8px 30px #08384a25}
+.brand{display:flex;align-items:center;gap:13px}.logo{width:48px;height:48px;border-radius:15px;background:linear-gradient(145deg,#fff,#c6f8f3);color:#07536a;display:grid;place-items:center;font-weight:900;font-size:19px;box-shadow:inset 0 0 0 1px #ffffff90}.brand h1{font-size:clamp(18px,2.4vw,26px);margin:0;letter-spacing:.2px}.brand p{margin:4px 0 0;color:#d7f6f7;font-size:12px;letter-spacing:.5px}.top-tag{border:1px solid #ffffff50;border-radius:999px;padding:9px 14px;font-size:12px;color:#e8ffff;white-space:nowrap}
+.hero{max-width:1450px;margin:26px auto 20px;padding:0 22px;display:flex;align-items:center;justify-content:space-between;gap:20px}.hero h2{font-size:clamp(23px,3vw,36px);margin:0 0 8px;color:#083d5b}.hero p{margin:0;color:#557286;line-height:1.6}.hero-badge{background:#ffffffb8;border:1px solid #fff;padding:14px 18px;border-radius:16px;box-shadow:0 10px 28px #174b6310;color:#0b6270;font-size:13px;font-weight:700}
+.layout{max-width:1450px;margin:0 auto 42px;padding:0 22px;display:grid;grid-template-columns:minmax(320px,.88fr) minmax(0,1.12fr);gap:22px;align-items:start}
+.panel{background:#ffffffdc;backdrop-filter:blur(14px);border:1px solid #ffffff;border-radius:22px;box-shadow:0 18px 48px #0a3c5413;overflow:hidden}
+.panel-head{padding:20px 22px;background:linear-gradient(110deg,#073b5a,#087f8d);color:white}.panel-head h3{margin:0;font-size:18px}.panel-head p{margin:6px 0 0;color:#d8f6f6;font-size:12px}
+.form-body{padding:20px}.section-title{display:flex;align-items:center;gap:10px;margin:20px 0 13px;font-size:13px;text-transform:uppercase;letter-spacing:1px;color:#087581;font-weight:800}.section-title:first-child{margin-top:0}.section-title:after{content:"";height:1px;background:#d6e9ef;flex:1}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{min-width:0}.field.full{grid-column:1/-1}label{display:block;font-size:12px;font-weight:700;color:#31566c;margin:0 0 6px}input,textarea,select{width:100%;border:1px solid #d4e5ec;border-radius:10px;padding:11px 12px;background:#fbfdfe;color:#183b50;font:inherit;font-size:13px;outline:none;transition:.2s}input:focus,textarea:focus,select:focus{border-color:#08a4a6;box-shadow:0 0 0 3px #08a4a615;background:#fff}textarea{min-height:78px;resize:vertical;line-height:1.5}.hint{font-size:11px;color:#7b909e;margin-top:5px}.repeat-card{border:1px solid #dcebf0;border-radius:13px;padding:13px;margin:10px 0;background:#f8fcfd}.repeat-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:12px;font-weight:800;color:#23566a}.mini-btn{border:1px solid #c9e1e8;background:#fff;color:#087d86;border-radius:8px;padding:6px 9px;font-size:11px;cursor:pointer}.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}.btn{border:0;border-radius:11px;padding:12px 16px;font-size:13px;font-weight:800;cursor:pointer;transition:transform .18s,box-shadow .18s}.btn:hover{transform:translateY(-1px);box-shadow:0 8px 20px #083b531e}.primary{background:linear-gradient(110deg,#007c89,#08aaa3);color:white}.secondary{background:#e8f4f7;color:#15536b;border:1px solid #d3e7ed}.danger{background:#fff0ef;color:#b34d4d;border:1px solid #f3d6d3}
+.preview-wrap{position:sticky;top:14px}.preview-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:15px 18px;border-bottom:1px solid #e1edf1;background:#ffffffd9}.preview-head strong{font-size:14px;color:#17475f}.preview-head span{font-size:11px;color:#6d8796}.preview-actions{display:flex;gap:7px;flex-wrap:wrap}.preview-actions .btn{padding:9px 11px;font-size:11px}
+.cv-paper{background:white;width:100%;min-height:1080px;box-shadow:0 10px 35px #123e5412;color:#153a55;overflow:hidden}.cv-top{padding:28px 28px 22px;display:grid;grid-template-columns:130px minmax(0,1fr) 1px minmax(155px,.82fr);gap:19px;align-items:center;border-top:8px solid #087d8b;position:relative}.cv-top:after{content:"";position:absolute;right:0;top:0;border-top:70px solid #20b9b4;border-left:70px solid transparent;opacity:.8}.photo-frame{width:130px;height:145px;border-radius:9px;border:3px solid #0b9da6;background:linear-gradient(145deg,#d8f2f5,#d9e8f8);overflow:hidden;display:grid;place-items:center;color:#087e8b;font-size:12px;text-align:center}.photo-frame img{width:100%;height:100%;object-fit:cover;display:none}.cv-name{font-size:clamp(24px,2.4vw,36px);font-weight:850;letter-spacing:-.7px;line-height:1.05;color:#083d5c;overflow-wrap:anywhere}.cv-role{font-size:15px;font-weight:800;color:#087f8d;margin-top:9px;text-transform:uppercase;letter-spacing:.6px}.cv-tagline{font-size:11px;color:#658093;margin-top:8px}.cv-divider{height:100%;background:#d4e8ee;min-height:90px}.contact-list{font-size:10.5px;line-height:1.6;overflow-wrap:anywhere}.contact-list div{margin:6px 0}.contact-list b{color:#087c8b;margin-right:5px}
+.cv-content{display:grid;grid-template-columns:32% 68%;padding:0 22px 24px;gap:20px}.cv-left{background:linear-gradient(180deg,#edf8fb,#e2f2f8);padding:18px 14px;border-radius:0 15px 15px 15px}.cv-right{padding:3px 0 0}.cv-section{margin-bottom:18px;break-inside:avoid}.cv-section h3{margin:0 0 10px;background:linear-gradient(100deg,#07506e,#087f8d);color:white;padding:8px 11px;border-radius:9px;font-size:12px;letter-spacing:.5px;text-transform:uppercase;display:flex;align-items:center;gap:8px}.cv-section h3:before{content:"";width:5px;height:14px;border-radius:4px;background:#66e0d4}.cv-section p{font-size:11px;line-height:1.65;margin:0 0 6px;white-space:pre-line;overflow-wrap:anywhere}.cv-section ul{padding-left:16px;margin:0}.cv-section li{font-size:11px;line-height:1.65;margin:3px 0;overflow-wrap:anywhere}.edu-table{width:100%;border-collapse:collapse;font-size:9.5px}.edu-table th{background:#d9edf3;color:#17465c;text-align:left}.edu-table th,.edu-table td{padding:7px 6px;border:1px solid #cce2e9;vertical-align:top;overflow-wrap:anywhere}.exp-item{margin-bottom:11px}.exp-title{font-weight:800;font-size:11px;color:#123f66}.exp-meta{font-size:10px;color:#6b8797;margin:3px 0 5px}.exp-item p{white-space:pre-line}.personal-grid{display:grid;grid-template-columns:1fr;gap:5px;font-size:10.5px}.personal-grid div{display:grid;grid-template-columns:90px 1fr;gap:4px;overflow-wrap:anywhere}.personal-grid span:first-child{color:#5e7a8a}.quote-box{background:linear-gradient(145deg,#007b85,#07506c);color:white;border-radius:10px;padding:14px;font-size:11px;line-height:1.7;font-style:italic}.cv-bottom{display:flex;justify-content:space-between;align-items:end;gap:20px;padding:0 28px 24px;font-size:10px}.signature{text-align:center;min-width:135px}.signature-line{border-bottom:1px solid #42687b;height:25px;margin-bottom:5px}.cv-footer{background:#063d59;color:#e5ffff;padding:15px 25px;display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:10px}.cv-footer strong{font-size:15px;letter-spacing:1px}.empty{color:#7c95a1;font-style:italic}
+.notice{max-width:1450px;margin:0 auto 26px;padding:0 22px;font-size:12px;color:#5f7d8d}.notice b{color:#087c88}
+@media(max-width:1050px){.layout{grid-template-columns:1fr}.preview-wrap{position:static}.cv-paper{max-width:900px;margin:auto}.cv-top{grid-template-columns:110px minmax(0,1fr) 1px minmax(130px,.8fr);gap:13px}.photo-frame{width:110px;height:125px}}
+@media(max-width:650px){.topbar{align-items:flex-start}.top-tag{display:none}.hero{align-items:flex-start;flex-direction:column;margin-top:20px}.layout{padding:0 12px;gap:15px}.fields{grid-template-columns:1fr}.field.full{grid-column:auto}.form-body{padding:15px}.cv-top{grid-template-columns:84px 1fr;padding:18px 15px;gap:12px}.photo-frame{width:84px;height:100px}.cv-name{font-size:23px}.cv-role{font-size:11px}.cv-tagline{font-size:9px}.cv-divider{display:none}.contact-list{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:2px;font-size:9px;border-top:1px solid #d8eaf0;padding-top:8px}.cv-content{grid-template-columns:1fr;padding:0 13px 18px;gap:13px}.cv-left{border-radius:10px;padding:13px}.cv-right{padding:0}.cv-section h3{font-size:11px}.cv-section p,.cv-section li{font-size:10.5px}.cv-bottom{padding:0 16px 18px}.cv-footer{padding:13px 16px}.preview-head{align-items:flex-start;flex-direction:column}.preview-actions{width:100%}.preview-actions .btn{flex:1}.cv-paper{min-height:0}}
+@media print{ @page{size:A4;margin:0} body{background:#fff!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}body:before,body:after,.topbar,.hero,.form-panel,.notice,.preview-head{display:none!important}.layout{display:block;max-width:none;margin:0;padding:0}.preview-wrap{position:static}.panel.preview-panel{border:0;box-shadow:none;border-radius:0;background:#fff}.preview-panel>.panel-head{display:none}.cv-paper{width:210mm;height:297mm;min-height:297mm;margin:0;box-shadow:none;page-break-inside:avoid;display:flex;flex-direction:column;overflow:hidden}.cv-top{padding:7mm 7mm 5mm;grid-template-columns:28mm minmax(0,1fr) 1px 42mm;gap:4mm}.photo-frame{width:28mm;height:31mm}.cv-name{font-size:23pt}.cv-role{font-size:10pt}.contact-list{font-size:7.5pt}.cv-content{padding:0 6mm 4mm;gap:4mm;flex:1;align-content:start}.cv-left{padding:4mm 3mm}.cv-section{margin-bottom:4mm}.cv-section h3{font-size:8.5pt;padding:2mm}.cv-section p,.cv-section li{font-size:7.5pt;line-height:1.4}.edu-table{font-size:6.5pt}.edu-table th,.edu-table td{padding:1.4mm}.personal-grid{font-size:6.7pt}.personal-grid div{grid-template-columns:27mm 1fr;gap:2mm}.quote-box{font-size:7.5pt;padding:3mm}.cv-bottom{padding:0 7mm 4mm;font-size:7pt;margin-top:auto;flex-shrink:0}.cv-footer{padding:3mm 7mm;font-size:7pt;flex-shrink:0}.cv-footer strong{font-size:10pt}.cv-section,.exp-item{break-inside:avoid}}
 </style>
 </head>
 <body>
-<div class="app">
-<aside class="panel">
-<div class="brand"><h1>JANA ONLINE SERVICE</h1><h4>Professional CV Builder</h4><p>Fill the form • Preview instantly • Print / Save as PDF</p></div>
-<div class="form">
-
-<div class="section"><h2>01 · Personal & Contact</h2><div class="inside"><div class="grid">
-<div><label>Full Name</label><input id="name" value="Suman Jana"></div>
-<div><label>Professional Title</label><input id="title" value="Computer Expert"></div>
-<div><label>Mobile 1</label><input id="phone1" value="+91 9907992247"></div>
-<div><label>Mobile 2</label><input id="phone2" value="+91 6297726894"></div>
-<div><label>Email</label><input id="email" value="sj637989@gmail.com"></div>
-<div><label>PIN Code</label><input id="pin" value="743347"></div>
-<div class="full"><label>Address</label><textarea id="address">Kakdwip, Dakshin Sener Chak, Kalinagar, South 24 Parganas, West Bengal - 743347</textarea></div>
-<div>
-<label>Profile Photo</label>
-<input id="photo" type="file" accept="image/*">
-<div id="photoPreviewBox" style="display:none;margin-top:8px;padding:8px;border:1px solid #d9e2e5;border-radius:8px;background:#f7fafb;text-align:center">
-<img id="formPhotoPreview" style="width:72px;height:88px;object-fit:cover;object-position:center;border-radius:5px;border:1px solid #ccd7da">
-<div style="font-size:10px;color:#667085;margin-top:5px">Photo Preview</div>
-</div>
-</div>
-<div><label>Father's Name</label><input id="father" value="Narayan Jana"></div>
-<div><label>Date of Birth</label><input id="dob" type="date" value="2003-07-26"></div>
-<div><label>Gender</label><select id="gender"><option>Male</option><option>Female</option><option>Other</option></select></div>
-<div><label>Nationality</label><input id="nationality" value="Indian"></div>
-<div><label>Religion</label><input id="religion" value="Hindu"></div>
-<div><label>Category</label><input id="category" value="General"></div>
-<div><label>Marital Status</label><input id="marital" value="Unmarried"></div>
-<div><label>Blood Group</label><input id="blood" value="AB+"></div>
-<div><label>Height</label><input id="height" value="5'5&quot;"></div>
-<div><label>Weight</label><input id="weight" value="58 Kgs"></div>
-</div></div></div>
-
-<div class="section"><h2>02 · Career Objective / Summary</h2><div class="inside"><textarea id="objective">I am looking for a company where I can use my experience and education to contribute to the company's goals while developing my professional skills and career.</textarea></div></div>
-
-<div class="section"><h2>03 · Education</h2><div class="inside"><div id="educationList"></div><button class="btn light" onclick="addEducation()">+ Add Education</button></div></div>
-
-<div class="section"><h2>04 · Work Experience</h2><div class="inside"><div id="experienceList"></div><button class="btn light" onclick="addExperience()">+ Add Experience</button></div></div>
-
-<div class="section"><h2>05 · Technical / Computer Skills</h2><div class="inside"><textarea id="technical">Microsoft Office, Internet Browsing, Mail Communication, File Management, Inventory Management, Basic Troubleshooting, Hardware Skills, Programming Languages, Graphic Design, Social Media, Presentation Software</textarea></div></div>
-
-<div class="section"><h2>06 · Personal Skills</h2><div class="inside"><textarea id="skills">Communication Skills, Teamwork, Time Management, Problem Solving, Office Operations, Quick Learning</textarea></div></div>
-
-<div class="section"><h2>07 · Languages Known</h2><div class="inside"><textarea id="languages">Bengali, English, Hindi</textarea></div></div>
-
-<div class="section"><h2>08 · Certifications</h2><div class="inside"><div id="certList"></div><button class="btn light" onclick="addCert()">+ Add Certificate</button></div></div>
-
-<div class="section"><h2>09 · Projects / Achievements</h2><div class="inside"><textarea id="projects" placeholder="Project name, achievement or important professional work..."></textarea></div></div>
-
-<div class="section"><h2>10 · Declaration</h2><div class="inside"><textarea id="declaration">I hereby declare that the information presented in this resume is true and accurate to the best of my knowledge. I assure you that my experience, skills and qualifications meet the job requirements and I am committed to making a positive contribution to your organization.</textarea>
-<div class="grid" style="margin-top:10px"><div><label>Place</label><input id="place" value="Kakdwip"></div><div><label>Date</label><input id="date" type="date"></div></div></div></div>
-
-<div class="actions"><button class="btn danger" onclick="resetAll()">Reset Form</button><button class="btn light" onclick="saveData()">Save in Browser</button><button class="btn light" onclick="loadData()">Load Saved Data</button></div>
-</div>
-<div class="toolbar"><button class="btn primary" onclick="window.print()">🖨 Print / Save PDF</button></div>
-</aside>
-
-<main class="preview-area"><div class="paper" id="paper">
-<header class="cv-head">
-<img id="pPhoto" class="photo">
-<div class="head-main">
-<div class="name" id="pName"></div><div class="title" id="pTitle"></div>
-<div class="contact"><span id="pPhone"></span><span id="pEmail"></span><span id="pPin"></span><br><span id="pAddress"></span></div>
-</div></header>
-
-<section class="cv-section"><h3>Professional Summary</h3><p id="pObjective"></p></section>
-<section class="cv-section"><h3>Work Experience</h3><div id="pExperience"></div></section>
-<section class="cv-section"><h3>Education</h3><div id="pEducation"></div></section>
-<div class="two">
-<div>
-<section class="cv-section"><h3>Technical Skills</h3><div class="skills" id="pTechnical"></div></section>
-<section class="cv-section"><h3>Personal Skills</h3><div class="skills" id="pSkills"></div></section>
-<section class="cv-section"><h3>Languages Known</h3><div class="skills" id="pLanguages"></div></section>
-</div>
-<div>
-<section class="cv-section"><h3>Certifications</h3><div id="pCert"></div></section>
-<section class="cv-section"><h3>Projects / Achievements</h3><p id="pProjects"></p></section>
-</div>
-</div>
-<section class="cv-section"><h3>Personal Information</h3><div class="personal" id="pPersonal"></div></section>
-<section class="cv-section"><h3>Declaration</h3><div class="declaration" id="pDeclaration"></div><div class="sign"><div>Place: <span id="pPlace"></span><br>Date: <span id="pDate"></span></div><div class="sig">Signature of Candidate<br><strong id="pSign"></strong></div></div></section>
-</div></main>
-</div>
-
+<header class="topbar">
+ <div class="brand"><div class="logo"><IMAGE SRC="https://lh3.googleusercontent.com/a-/ALV-UjU7cHPZFGO9gFXLALp74oNXb6GSIh5C79vtvmw7_MtTelJdO-Wq=w1425"class="logo"></IMAGE> </div><div><h1>Professional CV Maker</h1><p>DESIGN YOUR NEXT OPPORTUNITY</p></div></div>
+ <div class="top-tag"> PREMIUM RESUME STUDIO</div>
+</header>
+<section class="hero"><div><h2>Create a CV that makes a strong first impression.</h2><p>Fill in your details, preview your resume instantly, then print or save it as PDF.<br>Professional A4 layout • Mobile-friendly form • No account required</p></div><div class="hero-badge"> Modern • Clean • Professional</div></section>
+<main class="layout">
+<section class="panel form-panel">
+ <div class="panel-head"><h3>✎ CV Information Form</h3><p>Enter your real details. Your preview updates automatically.</p></div>
+ <div class="form-body">
+  <div class="section-title">Personal & Contact</div>
+  <div class="fields">
+   <div class="field full"><label>Full Name *</label><input id="name" value="Your Full Name" placeholder="Enter your full name"></div>
+   <div class="field"><label>Professional Designation</label><input id="role" value="BACK OFFICE EXECUTIVE" placeholder="e.g. Computer Operator"></div>
+   <div class="field"><label>Phone Number</label><input id="phone" placeholder="+91 XXXXX XXXXX"></div>
+   <div class="field"><label>Email Address</label><input id="email" type="email" placeholder="yourname@email.com"></div>
+   <div class="field"><label>Location / Address</label><input id="address" placeholder="City, District, State, PIN"></div>
+   <div class="field"><label>LinkedIn / Portfolio (optional)</label><input id="linkedin" placeholder="linkedin.com/in/yourname"></div>
+   <div class="field"><label>Upload Photo</label><input id="photo" type="file" accept="image/*"><div class="hint">Use a clear, professional photo.</div></div>
+   <div class="field full"><label>Professional Tagline (optional)</label><input id="tagline" value="Hard Working  |  Quick Learner  |  Team Player" placeholder="Your professional strengths"></div>
+  </div>
+  <div class="section-title">Career Objective</div>
+  <div class="field"><label>Career Objective / Summary</label><textarea id="objective">To secure a responsible position in a professional organization where I can apply my skills, contribute to team success, and continue developing my knowledge and career.</textarea></div>
+  <div class="section-title">Skills</div>
+  <div class="field"><label>Key Skills (one per line or comma-separated)</label><textarea id="skills">MS Word
+MS Excel
+Email Handling
+Data Entry & Record Management
+Good Communication Skills
+Time Management</textarea></div>
+  <div class="section-title">Computer Skills</div>
+  <div class="field"><label>Computer / Technical Knowledge</label><textarea id="computer">Windows
+Internet & Email
+MS Office
+Tally / Accounting (if applicable)
+Basic Troubleshooting</textarea></div>
+  <div class="section-title">Education</div>
+  <div id="educationList"></div>
+  <button class="mini-btn" type="button" onclick="addEducation()">＋ Add Education</button>
+  <div class="section-title">Work Experience</div>
+  <div id="experienceList"></div>
+  <button class="mini-btn" type="button" onclick="addExperience()">＋ Add Experience</button>
+  <div class="section-title">Personal Information</div><div class="fields">
+<div class="field"><label>Date of Birth</label><input id="dob" type="date"></div><div class="field"><label>Gender</label><select id="gender"><option value="">Select gender</option><option>Male</option><option>Female</option><option>Other</option></select></div>
+<div class="field full"><label>Address — Village / Town</label><input id="village" placeholder="Village / Town"></div><div class="field"><label>Post Office (P.O.)</label><input id="po" placeholder="Post Office"></div><div class="field"><label>Police Station (P.S.)</label><input id="ps" placeholder="Police Station"></div><div class="field"><label>District</label><input id="district" placeholder="District"></div><div class="field"><label>State</label><input id="state" placeholder="State"></div><div class="field"><label>PIN Code</label><input id="pin" inputmode="numeric" placeholder="PIN Code"></div><div class="field"><label>Contact No.</label><input id="contactNo" inputmode="tel" placeholder="Phone number"></div><div class="field"><label>Caste (optional)</label><input id="caste" placeholder="Only if relevant / required"></div><div class="field"><label>Religion (optional)</label><input id="religion" placeholder="Religion"></div><div class="field"><label>Marital Status</label><select id="marital"><option value="">Select status</option><option>Unmarried</option><option>Married</option><option>Other</option></select></div><div class="field"><label>Nationality</label><input id="nationality" value="Indian"></div><div class="field"><label>Blood Group (optional)</label><select id="blood"><option value="">Select blood group</option><option>A+</option><option>A-</option><option>B+</option><option>B-</option><option>AB+</option><option>AB-</option><option>O+</option><option>O-</option><option>Unknown</option></select></div><div class="field"><label>Highest Qualification</label><input id="qualification" placeholder="e.g. Higher Secondary Pass"></div><div class="field full"><label>Languages Known</label><input id="languages" value="Bengali, English, Hindi"></div><div class="field full"><label>Hobbies / Interests</label><input id="hobbies" placeholder="Reading, sports, technology"></div></div><p class="hint">Caste, religion and blood group are optional. Include only if relevant or required.</p>
+   <div class="section-title">Declaration & Signature</div>
+  <div class="field"><label>Declaration (optional)</label><textarea id="declaration">I hereby declare that the information provided above is true and correct to the best of my knowledge and belief.</textarea></div>
+  <div class="fields" style="margin-top:12px">
+   <div class="field"><label>Place</label><input id="place" placeholder="Place"></div>
+   <div class="field"><label>Date</label><input id="date" type="date"></div>
+   <div class="field full"><label>Signature Name (typed)</label><input id="sign" placeholder="Type your full name"></div>
+  </div>
+  <div class="actions"><button class="btn primary" type="button" onclick="generateCV()"> Generate / Update CV</button><button class="btn secondary" type="button" onclick="window.print()">⤓ Print / Save PDF</button><button class="btn danger" type="button" onclick="resetForm()">Reset Form</button></div>
+  <p class="hint">Privacy: this single-file demo processes your form in your browser. It does not upload your details to a server.</p>
+ </div>
+</section>
+<section class="panel preview-panel preview-wrap">
+ <div class="preview-head"><div><strong>▣ Live CV Preview</strong><br><span>A4-inspired layout · updates as you type</span></div><div class="preview-actions"><button class="btn secondary" onclick="generateCV()">Update Preview</button><button class="btn primary" onclick="window.print()">Print / PDF</button></div></div>
+ <div class="cv-paper" id="cvPaper">
+  <div class="cv-top">
+   <div class="photo-frame" id="photoFrame"><span id="photoPlaceholder">YOUR<br>PHOTO</span><img id="cvPhoto" alt="Candidate photo"></div>
+   <div><div class="cv-name" id="outName">Your Full Name</div><div class="cv-role" id="outRole">BACK OFFICE EXECUTIVE</div><div class="cv-tagline" id="outTagline">Hard Working | Quick Learner | Team Player</div></div>
+   <div class="cv-divider"></div>
+   <div class="contact-list" id="outContact"></div>
+  </div>
+  <div class="cv-content">
+   <aside class="cv-left">
+    <section class="cv-section"><h3>Skills</h3><ul id="outSkills"></ul></section>
+    <section class="cv-section"><h3>Computer Skills</h3><ul id="outComputer"></ul></section>
+    <section class="cv-section"><h3>Languages</h3><ul id="outLanguages"></ul></section>
+    <div class="quote-box">“Committed to learning, contributing, and growing through meaningful work.”</div>
+   </aside>
+   <div class="cv-right">
+    <section class="cv-section"><h3>Career Objective</h3><p id="outObjective"></p></section>
+    <section class="cv-section"><h3>Educational Qualifications</h3><div id="outEducation"></div></section>
+    <section class="cv-section"><h3>Personal Details</h3><div class="personal-grid" id="outPersonal"></div></section>
+    <section class="cv-section"><h3>Work Experience</h3><div id="outExperience"></div></section>
+    <section class="cv-section"><h3>Declaration</h3><p id="outDeclaration"></p></section>
+   </div>
+  </div>
+  <div class="cv-bottom"><div><div><b>Place:</b> <span id="outPlace">—</span></div><div style="margin-top:6px"><b>Date:</b> <span id="outDate">—</span></div></div><div class="signature"><div class="signature-line" id="outSign"> </div><b id="outSignLabel">Candidate Signature</b></div></div>
+  <div class="cv-footer"><strong>CV / RESUME</strong><span>Professional Profile · Prepared with care</span><span>Thank You</span></div>
+ </div>
+</section>
+</main>
+<div class="notice"><b>Important:</b> Replace the sample text with accurate information. Only include personal details that are relevant to the job application.</div>
 <script>
 const $=id=>document.getElementById(id);
-let photoData="";
-
-function val(id){return $(id)?.value.trim()||""}
-function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
-function chips(text){return text.split(/[,\\n]+/).map(x=>x.trim()).filter(Boolean).map(x=>`<span class="skill">${esc(x)}</span>`).join("")}
-function addEducation(data={}){
- const d=document.createElement("div");d.className="item education";
- d.innerHTML=`<div class="item-title">Education Entry</div><div class="grid">
- <div><label>Qualification</label><input class="eq" value="${esc(data.q||"")}"></div>
- <div><label>Institution</label><input class="ei" value="${esc(data.i||"")}"></div>
- <div><label>Board / University</label><input class="eb" value="${esc(data.b||"")}"></div>
- <div><label>Year</label><input class="ey" value="${esc(data.y||"")}"></div>
- <div><label>Marks / Grade</label><input class="em" value="${esc(data.m||"")}"></div>
- <div><label>Location</label><input class="el" value="${esc(data.l||"")}"></div>
- </div><button class="btn danger" style="margin-top:8px" onclick="this.parentElement.remove();render()">Remove</button>`;
- $("educationList").appendChild(d);d.querySelectorAll("input").forEach(x=>x.addEventListener("input",render));render();
+const fields=['name','role','phone','email','address','linkedin','tagline','objective','skills','computer','languages','dob','nationality','gender','marital','blood','religion','caste','hobbies','village','po','ps','district','state','pin','contactNo','qualification','declaration','place','date','sign'];
+let educationCount=0, experienceCount=0, photoData='';
+function addEducation(data={}){educationCount++;const id=educationCount;const el=document.createElement('div');el.className='repeat-card';el.dataset.education='1';el.innerHTML=`<div class="repeat-top"><span>Education ${id}</span><button class="mini-btn" type="button" onclick="this.closest('.repeat-card').remove();generateCV()">Remove</button></div><div class="fields"><div class="field"><label>Examination Name</label><input class="ed-degree" placeholder="Madhyamik / Higher Secondary / Graduation" value="${esc(data.degree||'')}"></div><div class="field"><label>Year of Passing</label><input class="ed-year" inputmode="numeric" placeholder="2024" value="${esc(data.year||'')}"></div><div class="field"><label>Board / University</label><input class="ed-board" placeholder="WBBSE / WBCHSE / University" value="${esc(data.board||'')}"></div><div class="field"><label>Marks Obtained</label><input class="ed-marks" placeholder="420 / 500" value="${esc(data.marks||'')}"></div><div class="field"><label>Percentage (%)</label><input class="ed-percentage" inputmode="decimal" placeholder="84%" value="${esc(data.percentage||'')}"></div></div>`;$('educationList').appendChild(el);el.querySelectorAll('input').forEach(x=>x.addEventListener('input',generateCV));generateCV()}
+function addExperience(data={}){experienceCount++;const id=experienceCount;const el=document.createElement('div');el.className='repeat-card';el.dataset.experience='1';el.innerHTML=`<div class="repeat-top"><span>Experience ${id}</span><button class="mini-btn" type="button" onclick="this.closest('.repeat-card').remove();generateCV()">Remove</button></div><div class="fields"><div class="field"><label>Job Title</label><input class="ex-title" placeholder="e.g. Office Assistant" value="${esc(data.title||'')}"></div><div class="field"><label>Company / Organization</label><input class="ex-company" placeholder="Organization name" value="${esc(data.company||'')}"></div><div class="field"><label>Duration</label><input class="ex-duration" placeholder="e.g. Jan 2023 – Mar 2025" value="${esc(data.duration||'')}"></div><div class="field full"><label>Responsibilities (one per line)</label><textarea class="ex-responsibilities" placeholder="Describe your real responsibilities">${esc(data.responsibilities||'')}</textarea></div></div>`;$('experienceList').appendChild(el);el.querySelectorAll('input,textarea').forEach(x=>x.addEventListener('input',generateCV));generateCV()}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function val(id){return $(id).value.trim()}
+function lines(text){return text.split(/[\n,]+/).map(x=>x.trim()).filter(Boolean)}
+function setText(id,text,placeholder=''){const el=$(id);el.textContent=text||placeholder;el.classList.toggle('empty',!text&&!!placeholder)}
+function makeList(id,arr,placeholder){const el=$(id);el.innerHTML='';(arr.length?arr:[placeholder]).forEach(t=>{const li=document.createElement('li');li.textContent=t;if(!arr.length)li.className='empty';el.appendChild(li)})}
+function formatDate(s){if(!s)return '';const d=new Date(s+'T00:00:00');return isNaN(d)?s:d.toLocaleDateString('en-GB',{day:'2-digit',month:'short',year:'numeric'})}
+function generateCV(){
+ setText('outName',val('name'),'Your Full Name');setText('outRole',val('role'),'PROFESSIONAL DESIGNATION');setText('outTagline',val('tagline'));
+ const contacts=[['☎',val('phone')],['✉',val('email')],['⌖',val('address')],['in',val('linkedin')]].filter(x=>x[1]);
+ $('outContact').innerHTML=contacts.map(([a,b])=>`<div><b>${esc(a)}</b> ${esc(b)}</div>`).join('')||'<div class="empty">Add contact information</div>';
+ makeList('outSkills',lines(val('skills')),'Add your skills');makeList('outComputer',lines(val('computer')),'Add computer skills');makeList('outLanguages',lines(val('languages')),'Add languages');
+ const fullAddress=[['Village / Town',val('village')],['P.O.',val('po')],['P.S.',val('ps')],['District',val('district')],['State',val('state')],['PIN',val('pin')]].filter(x=>x[1]).map(([k,v])=>k+': '+v).join(', ');
+  const personal=[["Date of Birth",formatDate(val('dob'))],["Address",fullAddress],["Contact No.",val('contactNo')||val('phone')],["Gender",val('gender')],["Caste",val('caste')],["Religion",val('religion')],["Marital Status",val('marital')],["Nationality",val('nationality')],["Language",val('languages')],["Blood Group",val('blood')],["Qualification",val('qualification')],["Hobby",val('hobbies')]].filter(x=>x[1]);
+  $('outPersonal').innerHTML=personal.length?personal.map(([a,b])=>`<div><span>${esc(a)}</span><span>${esc(b)}</span></div>`).join(''):'<div class="empty">Fill in your personal information.</div>';
+  setText('outObjective',val('objective'),'Add a short career objective');setText('outDeclaration',val('declaration'));
+ const ed=[...document.querySelectorAll('[data-education]')].map(el=>({degree:el.querySelector('.ed-degree').value.trim(),year:el.querySelector('.ed-year').value.trim(),board:el.querySelector('.ed-board').value.trim(),marks:el.querySelector('.ed-marks').value.trim(),percentage:el.querySelector('.ed-percentage').value.trim()})).filter(o=>o.degree||o.year||o.board||o.marks||o.percentage);
+  $('outEducation').innerHTML=ed.length?`<table class="edu-table"><thead><tr><th>Examination</th><th>Year</th><th>Board / University</th><th>Marks Obtained</th><th>Percentage</th></tr></thead><tbody>${ed.map(o=>`<tr><td>${esc(o.degree||'—')}</td><td>${esc(o.year||'—')}</td><td>${esc(o.board||'—')}</td><td>${esc(o.marks||'—')}</td><td>${esc(o.percentage||'—')}</td></tr>`).join('')}</tbody></table>`:'<p class="empty">Add education details using the form.</p>';
+  const ex=[...document.querySelectorAll('[data-experience]')].map(el=>({title:el.querySelector('.ex-title').value.trim(),company:el.querySelector('.ex-company').value.trim(),duration:el.querySelector('.ex-duration').value.trim(),responsibilities:el.querySelector('.ex-responsibilities').value.trim()})).filter(o=>o.title||o.company||o.duration||o.responsibilities);
+ $('outExperience').innerHTML=ex.length?ex.map(o=>`<div class="exp-item"><div class="exp-title">${esc(o.title||'Position')}</div><div class="exp-meta">${esc(o.company)}${o.company&&o.duration?' · ':''}${esc(o.duration)}</div>${o.responsibilities?`<ul>${lines(o.responsibilities).map(t=>`<li>${esc(t)}</li>`).join('')}</ul>`:''}</div>`).join(''):'<p class="empty">No experience added. You can leave this blank if you are a fresher.</p>';
+ setText('outPlace',val('place'),'—');setText('outDate',formatDate(val('date')),'—');setText('outSign',val('sign'),' ');setText('outSignLabel',val('sign')||'Candidate Signature');
 }
-function addExperience(data={}){
- const d=document.createElement("div");d.className="item experience";
- d.innerHTML=`<div class="item-title">Experience Entry</div><div class="grid">
- <div><label>Job Title</label><input class="xt" value="${esc(data.t||"")}"></div>
- <div><label>Company / Organisation</label><input class="xc" value="${esc(data.c||"")}"></div>
- <div><label>Location</label><input class="xl" value="${esc(data.l||"")}"></div>
- <div><label>Start - End</label><input class="xd" value="${esc(data.d||"")}"></div>
- <div class="full"><label>Responsibilities / Description</label><textarea class="xr">${esc(data.r||"")}</textarea></div>
- </div><button class="btn danger" style="margin-top:8px" onclick="this.parentElement.remove();render()">Remove</button>`;
- $("experienceList").appendChild(d);d.querySelectorAll("input,textarea").forEach(x=>x.addEventListener("input",render));render();
-}
-function addCert(data={}){
- const d=document.createElement("div");d.className="item cert";
- d.innerHTML=`<div class="grid"><div><label>Certificate</label><input class="cn" value="${esc(data.n||"")}"></div><div><label>Organisation / Year</label><input class="cy" value="${esc(data.y||"")}"></div></div><button class="btn danger" style="margin-top:8px" onclick="this.parentElement.remove();render()">Remove</button>`;
- $("certList").appendChild(d);d.querySelectorAll("input").forEach(x=>x.addEventListener("input",render));render();
-}
-function render(){
- $("pName").textContent=val("name");$("pTitle").textContent=val("title");
- $("pPhone").textContent=[val("phone1"),val("phone2")].filter(Boolean).join("  |  ");
- $("pEmail").textContent=val("email");$("pPin").textContent=val("pin")? "PIN: "+val("pin"):"";$("pAddress").textContent=val("address");
- $("pObjective").textContent=val("objective");
- $("pTechnical").innerHTML=chips(val("technical"));$("pSkills").innerHTML=chips(val("skills"));$("pLanguages").innerHTML=chips(val("languages"));
- $("pProjects").textContent=val("projects");$("pDeclaration").textContent=val("declaration");$("pPlace").textContent=val("place");$("pDate").textContent=val("date");$("pSign").textContent=val("name");
-
- $("pEducation").innerHTML=[...document.querySelectorAll(".education")].map(e=>`<div class="cv-item"><div class="top"><strong>${esc(e.querySelector(".eq").value)}</strong><span class="date">${esc(e.querySelector(".ey").value)}</span></div><div class="sub">${esc(e.querySelector(".ei").value)} ${e.querySelector(".eb").value?" · "+esc(e.querySelector(".eb").value):""} ${e.querySelector(".el").value?" · "+esc(e.querySelector(".el").value):""}</div>${e.querySelector(".em").value?`<div class="sub">Marks / Grade: ${esc(e.querySelector(".em").value)}</div>`:""}</div>`).join("");
- $("pExperience").innerHTML=[...document.querySelectorAll(".experience")].map(e=>`<div class="cv-item"><div class="top"><strong>${esc(e.querySelector(".xt").value)}</strong><span class="date">${esc(e.querySelector(".xd").value)}</span></div><div class="sub">${esc(e.querySelector(".xc").value)} ${e.querySelector(".xl").value?" · "+esc(e.querySelector(".xl").value):""}</div>${e.querySelector(".xr").value?`<ul>${e.querySelector(".xr").value.split(/\\n+/).map(x=>`<li>${esc(x.replace(/^[-•]\\s*/,""))}</li>`).join("")}</ul>`:""}</div>`).join("");
- $("pCert").innerHTML=[...document.querySelectorAll(".cert")].map(e=>`<div class="cv-item"><strong>${esc(e.querySelector(".cn").value)}</strong><div class="sub">${esc(e.querySelector(".cy").value)}</div></div>`).join("");
-
- const personal=[
- ["Father's Name",val("father")],["Date of Birth",val("dob")],["Gender",val("gender")],["Nationality",val("nationality")],
- ["Religion",val("religion")],["Category",val("category")],["Marital Status",val("marital")],["Blood Group",val("blood")],
- ["Height",val("height")],["Weight",val("weight")],["Last Qualification",lastQualification()]
- ].filter(x=>x[1]);
- $("pPersonal").innerHTML=personal.map(x=>`<div><b>${x[0]}:</b> ${esc(x[1])}</div>`).join("");
-}
-function lastQualification(){let a=[...document.querySelectorAll(".education")];return a.length?a[0].querySelector(".eq").value:""}
-$("photo").addEventListener("change",e=>{
- const f=e.target.files[0];
- if(!f)return;
- if(!f.type.startsWith("image/")){alert("Please select an image file.");return}
- const r=new FileReader();
- r.onload=()=>{
-   photoData=r.result;
-   $("pPhoto").src=r.result;
-   $("pPhoto").style.display="block";
-   $("formPhotoPreview").src=r.result;
-   $("photoPreviewBox").style.display="block";
- };
- r.readAsDataURL(f);
-});
-document.querySelectorAll("input:not(#photo),textarea,select").forEach(x=>x.addEventListener("input",render));
-function saveData(){
- const data={fields:{}};document.querySelectorAll("input,textarea,select").forEach(x=>{if(x.id)data.fields[x.id]=x.value});
- data.edu=[...document.querySelectorAll(".education")].map(e=>({q:e.querySelector(".eq").value,i:e.querySelector(".ei").value,b:e.querySelector(".eb").value,y:e.querySelector(".ey").value,m:e.querySelector(".em").value,l:e.querySelector(".el").value}));
- data.exp=[...document.querySelectorAll(".experience")].map(e=>({t:e.querySelector(".xt").value,c:e.querySelector(".xc").value,l:e.querySelector(".xl").value,d:e.querySelector(".xd").value,r:e.querySelector(".xr").value}));
- data.cert=[...document.querySelectorAll(".cert")].map(e=>({n:e.querySelector(".cn").value,y:e.querySelector(".cy").value}));
- data.photo=photoData;localStorage.setItem("professionalCV",JSON.stringify(data));alert("CV data saved in this browser.");
-}
-function loadData(){
- const d=JSON.parse(localStorage.getItem("professionalCV")||"null");if(!d)return alert("No saved CV found.");
- Object.entries(d.fields||{}).forEach(([k,v])=>{if($(k))$(k).value=v});
- $("educationList").innerHTML="";$("experienceList").innerHTML="";$("certList").innerHTML="";
- (d.edu||[]).forEach(addEducation);(d.exp||[]).forEach(addExperience);(d.cert||[]).forEach(addCert);
- if(d.photo){
- photoData=d.photo;
- $("pPhoto").src=d.photo;
- $("pPhoto").style.display="block";
- $("formPhotoPreview").src=d.photo;
- $("photoPreviewBox").style.display="block";
-}
-render();
-}
-function resetAll(){if(confirm("Clear the complete CV form?")){localStorage.removeItem("professionalCV");location.reload()}}
-function downloadHTML(){
- const blob=new Blob([document.documentElement.outerHTML],{type:"text/html"}),a=document.createElement("a");a.href=URL.createObjectURL(blob);a.download="professional-cv-builder.html";a.click();URL.revokeObjectURL(a.href)
-}
-$("date").value=new Date().toISOString().slice(0,10);
-addEducation({q:"Higher Secondary Education (12th)",i:"Kalinagar Dwarikanath Institution High School",b:"WBCHSE",y:"2022",m:"336",l:"South 24 Parganas"});
-addEducation({q:"Secondary Education (10th)",i:"Kalinagar Dwarikanath Institution High School",b:"WBBSE",y:"2020",m:"227",l:"South 24 Parganas"});
-addExperience({t:"Computer Trainer",c:"Maamtaj Information Technology",l:"Kakdwip, South 24 Parganas",d:"2023 – 2025",r:"Taught computer applications and practical computer skills\\nHandled office operations and training activities\\nProvided support for day-to-day computer work"});
-addExperience({t:"Stock Management / Counter",c:"Joy Makali Lottery Counter",l:"South 24 Parganas, West Bengal",d:"2022 – 2023",r:"Handled stock management work\\nUsed RT LOT software for stock management\\nManaged inventory-related activities"});
-addCert({n:"Add your certification",y:"Organisation / Year"});
-render();
+function resetForm(){if(!confirm('Clear the form and start a new CV?'))return;fields.forEach(id=>{if($(id).tagName==='SELECT')$(id).selectedIndex=0;else $(id).value=''});$('educationList').innerHTML='';$('experienceList').innerHTML='';educationCount=0;experienceCount=0;photoData='';$('photo').value='';$('cvPhoto').src='';$('cvPhoto').style.display='none';$('photoPlaceholder').style.display='block';addEducation();addExperience();generateCV()}
+$('photo').addEventListener('change',e=>{const f=e.target.files&&e.target.files[0];if(!f)return;if(!f.type.startsWith('image/')){alert('Please choose an image file.');return}const r=new FileReader();r.onload=()=>{photoData=r.result;$('cvPhoto').src=photoData;$('cvPhoto').style.display='block';$('photoPlaceholder').style.display='none'};r.readAsDataURL(f)});
+fields.forEach(id=>$(id).addEventListener('input',generateCV));
+$('date').value=new Date().toISOString().slice(0,10);
+addEducation();addExperience();generateCV();
 </script>
 </body>
 </html>
